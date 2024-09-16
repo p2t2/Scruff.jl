@@ -967,6 +967,11 @@ end
 
         @test isapprox(expectation(sf, ()), expectation(fit_normal, ()), atol=0.1)
         @test isapprox(variance(sf, ()), variance(fit_normal, ()), atol=0.1)
+
+        d = Distributions.MvNormal([1.0, 1.0], [1.0 0.5; 0.5 1.0])
+        mv_sfunc = DistributionsSF(d)
+        sample(mv_sfunc, ())
+        sumsfs((mv_sfunc, mv_sfunc))
     end
     
 end
